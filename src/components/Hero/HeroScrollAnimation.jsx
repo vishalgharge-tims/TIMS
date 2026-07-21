@@ -12,8 +12,7 @@ const FRAME_COUNT = 300;
  * render carries the rest of the section on its own.
  *
  * Usage:
- *   1. Place your 300 frames at /public/hero-frames/frame-001.jpg ... frame-300.jpg
- *      (three-digit, zero-padded, 1-indexed — matches the files you provided).
+ *   1. Place your 300 frames at /public/frames/ezgif-frame-001.jpg ...
  *   2. Drop <HeroScrollAnimation /> at the top of your page.
  */
 export default function HeroScrollAnimation() {
@@ -84,7 +83,7 @@ export default function HeroScrollAnimation() {
       className="relative"
       style={{ height: reducedMotion ? "100vh" : "400vh" }}
     >
-      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden bg-void">
+      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden bg-black">
         <canvas
           ref={canvasRef}
           className="absolute inset-0 block h-full w-full [filter:contrast(1.04)_saturate(1.02)]"
@@ -92,8 +91,8 @@ export default function HeroScrollAnimation() {
         <div className="hero-veil pointer-events-none absolute inset-0" />
 
         {!ready && (
-          <div className="relative z-[6] font-mono text-[11px] uppercase tracking-[0.12em] text-muted">
-            LOADING&nbsp;<span className="text-mint">{loadPct}%</span>
+          <div className="relative z-[6] font-mono text-[11px] uppercase tracking-[0.12em] text-neutral-400">
+            LOADING&nbsp;<span className="text-purple-400">{loadPct}%</span>
           </div>
         )}
 
@@ -109,27 +108,24 @@ export default function HeroScrollAnimation() {
                 }
           }
         >
-          <h1 className="hero-headline-glow mb-5 text-[clamp(34px,6vw,68px)] font-semibold leading-[1.04] tracking-[-0.02em] text-black">
-            TIMS Experience hub
+
+          <h1 className="mb-5 text-[clamp(34px,6vw,68px)] font-bold leading-[1.04] tracking-[-0.02em] text-[#f97316] drop-shadow-[0_2px_18px_rgba(0,0,0,0.55)]">
+            TIMS Experience Hub
           </h1>
-          <p className="hero-sub-glow mx-auto mb-8 max-w-[560px] text-base leading-[1.55] text-orange-500">
-            Empowering Digital Transformation through AI-Driven
-            Visualization, Immersive Technologies, and Digital Innovation.
+
+          <p className="mx-auto mb-8 max-w-[700px] text-2xl leading-[1.55] text-[neutral-500]">
+            Empowering Digital Transformation through AI-Driven Visualization,
+            Immersive Technologies, and Digital Innovation.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-3.5">
+
+          {/* <div className="flex flex-wrap items-center justify-center gap-3.5">
             <a
               href="#start"
-              className="inline-flex items-center gap-2 rounded-sm border border-transparent bg-ink px-6 py-3 font-display text-sm font-semibold tracking-[0.01em] text-[#0a0b0c] transition-colors hover:bg-mint focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#f2789f] to-[#7c3aed] px-7 py-3 font-sans text-sm font-bold tracking-[0.01em] text-white shadow-[0_8px_24px_rgba(124,58,237,0.35)] transition-transform duration-200 hover:scale-[1.03] hover:shadow-[0_10px_30px_rgba(124,58,237,0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a855f7]"
             >
               Explore
             </a>
-            {/* <a
-              href="#demo"
-              className="inline-flex items-center gap-2 rounded-sm border border-white/10 px-6 py-3 font-display text-sm font-semibold tracking-[0.01em] text-ink transition-colors hover:border-mint/40 hover:text-mint"
-            >
-              See it in action
-            </a> */}
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
