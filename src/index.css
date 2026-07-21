@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-void text-ink font-display antialiased m-0 p-0;
+  }
+  ::selection {
+    @apply bg-mint;
+    color: #06110d;
+  }
+}
+
+@layer components {
+  /* Hero: soft vignette over the canvas so copy stays readable at every frame */
+  .hero-veil {
+    background: radial-gradient(
+        ellipse at 50% 50%,
+        rgba(8, 9, 10, 0) 45%,
+        rgba(8, 9, 10, 0.85) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(8, 9, 10, 0.55) 0%,
+        rgba(8, 9, 10, 0) 18%,
+        rgba(8, 9, 10, 0) 78%,
+        rgba(8, 9, 10, 0.75) 100%
+      );
+  }
+
+  /* Black headline needs a light glow to stay visible against the dark render */
+  .hero-headline-glow {
+    text-shadow: 0 0 26px rgba(255, 255, 255, 0.6),
+      0 0 4px rgba(255, 255, 255, 0.85);
+  }
+
+  /* Orange subhead needs a dark glow so it holds up against lighter frames */
+  .hero-sub-glow {
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.65);
+  }
+}
