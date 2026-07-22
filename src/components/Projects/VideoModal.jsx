@@ -1,3 +1,7 @@
+// ============================================================================
+// OPTION 1: Native Video Controls + Theme Orange Close Button
+// ============================================================================
+
 // import { useEffect, useRef } from 'react';
 // import { createPortal } from 'react-dom';
 // import { gsap } from '../../lib/gsapSetup';
@@ -98,10 +102,9 @@
 // }
 
 
-
-
-
-// 2nd option
+// ============================================================================
+// OPTION 2: Electric Cyan Wireframe / Technical CAD Custom Controls
+// ============================================================================
 
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -213,7 +216,7 @@ export default function VideoModal({ project, onClose }) {
   return createPortal(
     <div
       ref={backdropRef}
-      className="fixed inset-0 z-[999] grid place-items-center bg-[rgba(10,8,20,0.85)] backdrop-blur-md p-6"
+      className="fixed inset-0 z-[999] grid place-items-center bg-[rgba(5,7,15,0.88)] backdrop-blur-md p-4 md:p-6"
       onMouseDown={(e) => {
         if (e.target === backdropRef.current) handleClose();
       }}
@@ -223,15 +226,23 @@ export default function VideoModal({ project, onClose }) {
         role="dialog"
         aria-modal="true"
         aria-label={`${project.title} video`}
-        className="group relative w-full max-w-[1100px] aspect-video max-sm:aspect-auto max-sm:h-[70vh] rounded-[20px] overflow-hidden bg-[#0b0b12] shadow-[0_40px_100px_rgba(0,0,0,0.6)]"
+        className="group relative w-full max-w-[1100px] aspect-video max-sm:aspect-auto max-sm:h-[70vh] rounded-[24px] overflow-hidden bg-[#0d0d11] border border-[#00f0ff]/40 shadow-[0_0_60px_rgba(0,240,255,0.2)]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px)`,
+          backgroundSize: '32px 32px',
+        }}
       >
-        {/* Close Button */}
+        {/* Wireframe Technical Crosshairs */}
+        <span className="absolute top-3 left-3 text-[#00f0ff] text-[10px] font-mono select-none drop-shadow-[0_0_6px_rgba(0,240,255,0.8)] z-10">+</span>
+        <span className="absolute top-3 right-14 text-[#00f0ff] text-[10px] font-mono select-none drop-shadow-[0_0_6px_rgba(0,240,255,0.8)] z-10">+</span>
+
+        {/* Cyan Close Button */}
         <button
           onClick={handleClose}
           aria-label="Close video"
-          className="absolute top-3.5 right-3.5 z-[10] w-10 h-10 rounded-full bg-[#f6a56b] text-white flex items-center justify-center cursor-pointer shadow-lg transition-all duration-200 hover:bg-[#f0965f] hover:scale-110 active:scale-95"
+          className="absolute top-3 right-3 z-[20] w-9 h-9 rounded-full bg-[#00f0ff] text-slate-950 flex items-center justify-center cursor-pointer shadow-[0_0_15px_rgba(0,240,255,0.6)] transition-all duration-200 hover:bg-white hover:scale-110 active:scale-95"
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
             <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
           </svg>
         </button>
@@ -248,27 +259,27 @@ export default function VideoModal({ project, onClose }) {
           preload="auto"
         />
 
-        {/* Custom Controls Bar matching project cards */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col gap-2 z-[5]">
-          {/* Custom Theme Timeline Progress Bar */}
+        {/* Custom HUD Controls */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[#0d0d11] via-[#0d0d11]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col gap-2 z-[10] border-t border-[#00f0ff]/20">
+          {/* Cyan Timeline Slider */}
           <input
             type="range"
             min="0"
             max="100"
             value={progress}
             onChange={handleSeek}
-            className="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-white/20 accent-[#f6a56b]"
+            className="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-zinc-800 accent-[#00f0ff]"
             style={{
-              background: `linear-gradient(to right, #f0965f ${progress}%, rgba(255,255,255,0.2) ${progress}%)`,
+              background: `linear-gradient(to right, #00f0ff ${progress}%, rgba(255,255,255,0.15) ${progress}%)`,
             }}
           />
 
           <div className="flex items-center justify-between text-white px-2 mt-1">
             <div className="flex items-center gap-4">
-              {/* Custom Gradient Play/Pause Button */}
+              {/* Cyan Play/Pause Button */}
               <button
                 onClick={togglePlay}
-                className="w-9 h-9 rounded-full flex items-center justify-center text-white bg-gradient-to-r from-[#f0965f] via-[#a26bf0] to-[#6b3ff0] shadow-md hover:scale-105 transition-transform"
+                className="w-9 h-9 rounded-full flex items-center justify-center text-slate-950 bg-[#00f0ff] shadow-[0_0_15px_rgba(0,240,255,0.5)] hover:scale-105 hover:bg-white transition-all"
               >
                 {isPlaying ? (
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
@@ -285,7 +296,7 @@ export default function VideoModal({ project, onClose }) {
               {/* Mute Button */}
               <button
                 onClick={toggleMute}
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-zinc-400 hover:text-[#00f0ff] transition-colors"
               >
                 {isMuted ? (
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -305,7 +316,7 @@ export default function VideoModal({ project, onClose }) {
             {/* Fullscreen Button */}
             <button
               onClick={toggleFullscreen}
-              className="text-white/80 hover:text-white transition-colors"
+              className="text-zinc-400 hover:text-[#00f0ff] transition-colors"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
